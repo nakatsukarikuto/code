@@ -1,0 +1,14 @@
+version: '3'
+services:
+  component-make:
+    build:
+      context: .
+      dockerfile: Dockerfile.comp
+    container_name: component-make
+    volumes:
+      - .:/app
+      # node_modulesはcreate-next-appしてからボリューム化する
+    tty: false
+    ports:
+      - 3000:3000
+    command: sh -c "cd component && npm run dev"
