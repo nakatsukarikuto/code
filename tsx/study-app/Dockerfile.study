@@ -1,0 +1,11 @@
+FROM node:21-alpine3.17
+RUN npm install -g npm@latest
+RUN npm install react-hook-form swr && \
+react-content-loader && \
+--save-dev @types/react-content-loader && \
+@mui/material && \
+@mui/icon-material && \
+@emotion/react && \
+@emotion/styled
+WORKDIR /app
+COPY . .

@@ -1,14 +1,15 @@
 version: '3'
 services:
-  component-make:
+  study-app:
     build:
       context: .
-      dockerfile: Dockerfile.comp
-    container_name: component-make
+      dockerfile: Dockerfile.study
+    container_name: study-app
     volumes:
       - .:/app
       # node_modulesはcreate-next-appしてからボリューム化する
-    tty: false
+    tty: true
     ports:
       - 3000:3000
-    command: sh -c "cd component && npm run dev"
+      - 6006:6006
+    command: sh -c "cd study-app && npm run dev"
