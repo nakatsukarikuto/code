@@ -35,7 +35,7 @@ class GRID_WORLD:
     def action(self):
         return self.action_space
     
-    def state(self):
+    def states(self):
         for h in range(self.height):
             for w in range(self.width):
                 yield(h, w)
