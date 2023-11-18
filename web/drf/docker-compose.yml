@@ -1,5 +1,0 @@
-services:
-  drf-practice:
-    container_name: drf-practice
-    build: .
-    
