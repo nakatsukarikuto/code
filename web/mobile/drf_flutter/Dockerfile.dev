@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+# python3のイメージ取得
+FROM python:3.9
+# バイトコードを生成しないようにする。ディスクスペース節約。
+ENV PYTHONDONTWRITTENBYCODE = 1
+# pythonの出力をリアルタイムで表示
+ENV PYTHONUNBFFERED = 1
+# コンテナ内での作業ディレクトリ作成
+WORKDIR /app/
+# カレントディレクトリのrequirement.txtをコンテナ内のcodeにコピー
+COPY requirements.txt /app/
+# コンテナ内のrequirement.txtから必要パッケージインストール
+RUN pip install -r requirements.txt 
+# カレントディレクトリにあるすべてのファイルをコンテナ内にコピー
+COPY . /app/

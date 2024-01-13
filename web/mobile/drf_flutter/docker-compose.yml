@@ -1,0 +1,39 @@
+services:
+  # PostgreSQLデータベースの定義
+  db:
+    # postgresイメージ使用
+    image: postgres
+    # ホスト上の./data/dbディレクトリとコンテナ上の/var...ディレクトリとの間でデータ永続化のためのvolume
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    container_name: db-
+    # データベース上の環境変数指定
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  # Webアプリ実行のためのサービス定義
+  api:
+    # カレントディレクトリのDockerfileからDockerイメージをビルド
+    build: 
+      context: .
+      #Dockerfile名指定
+      dockerfile: Dockerfile.dev
+    container_name: api
+    tty: true
+    # コンテナ起動時にdjango起動
+    #command: python manage.py runserver 0.0.0.0:8000
+    # カレントディレクトリ(.)とコンテナ上の/codeディレクトリ間でコード共有
+    volumes:
+      - ./api:/app/api
+    # カレントディレクトリのポート8000番とコンテナ内のポート8000番をマッピング
+    ports:
+      - "8000:8000"
+    # Webアプリの環境変数指定
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    # 依存サービス指定。dbが先に立ち上がるようにする
+    depends_on:
+      - db
