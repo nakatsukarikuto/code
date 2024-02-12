@@ -22,7 +22,7 @@ services:
     container_name: api
     tty: true
     # コンテナ起動時にdjango起動
-    #command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "cd api && python manage.py runserver 0.0.0.0:8000"
     # カレントディレクトリ(.)とコンテナ上の/codeディレクトリ間でコード共有
     volumes:
       - ./api:/app/api
