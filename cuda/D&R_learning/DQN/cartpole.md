@@ -1,5 +1,5 @@
 # CartPole
-* お勉強用に自分で実装したやつ
+* 勉強会用に自分で実装したやつ
 * DQN, DDQN, Dueling-DQNで比較している
 
 
