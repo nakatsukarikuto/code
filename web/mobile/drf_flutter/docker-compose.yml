@@ -1,5 +1,5 @@
 services:
-  # PostgreSQLデータベースの定義
+  # PostgreSQLデータベース定義
   db:
     # postgresイメージ使用
     image: postgres
